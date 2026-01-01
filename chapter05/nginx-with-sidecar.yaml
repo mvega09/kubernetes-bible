@@ -1,0 +1,23 @@
+# nginx-with-sidecar.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-with-sidecar
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx:latest
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: log-volume
+      mountPath: /var/log/nginx
+  - name: log-collector
+    image: log-collector-image:latest
+    # debe ser reemplazado con la imagen correcta del agente de recolección de logs
+    volumeMounts:
+    - name: log-volume
+      mountPath: /var/log/nginx
+  volumes:
+  - name: log-volume
+    emptyDir: {}

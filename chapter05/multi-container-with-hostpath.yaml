@@ -1,0 +1,22 @@
+# multi-container-with-hostpath.yaml
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multi-container-with-hostpath
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx:latest
+    volumeMounts:
+    - mountPath: /foo
+      name: my-host-path-volume
+  - name: debian-container
+    image: debian
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do sleep 30; done;"]  # Previene que el contenedor se complete
+  volumes:
+  - name: my-host-path-volume
+    hostPath:
+      path: /tmp              # La ruta en el nodo worker
+      type: Directory

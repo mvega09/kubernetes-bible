@@ -1,0 +1,16 @@
+# pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-hostpath-pvc
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  selector:
+    matchLabels:
+      type: hostpath
+      env: prod
+  storageClassName: slow

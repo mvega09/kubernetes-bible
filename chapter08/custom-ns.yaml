@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: "2025-12-26T18:22:42Z"
+  labels:
+    kubernetes.io/metadata.name: custom-ns
+  name: custom-ns
+  resourceVersion: "6204"
+  uid: 40ba118a-f1e4-4c3a-94d3-eb737ac17789
+spec:
+  finalizers:
+  - kubernetes
+status:
+  phase: Active

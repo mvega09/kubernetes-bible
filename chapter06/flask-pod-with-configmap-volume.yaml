@@ -1,0 +1,16 @@
+# flask-pod-with-configmap-volume.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: flask-pod-with-configmap-volume
+spec:
+  containers:
+  - name: flask-with-configmap-volume
+    image: quay.io/iamgini/my-flask-app:1.0
+    volumeMounts:
+    - name: configuration-volume  # coincide con el nombre del volumen
+      mountPath: /etc/conf
+  volumes:
+  - name: configuration-volume
+    configMap:
+      name: my-sixth-configmap  # El nombre del Configmap va aquí

@@ -1,0 +1,13 @@
+# clusterip-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-clusterip
+spec:
+  type: ClusterIP # Indica que el servicio es un ClusterIP
+  ports:
+  - port: 80 # El puerto expuesto por el servicio
+    protocol: TCP
+    targetPort: 80 # El puerto de destino en los pods
+  selector:
+    run: nginx-clusterip
