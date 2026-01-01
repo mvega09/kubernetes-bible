@@ -142,6 +142,8 @@ kubectl create deployment <nombre> --image=<imagen>  # Crea un deployment con la
 
 # Información
 kubectl describe deployment <nombre>    # Muestra detalles del deployment
+kubectl describe deployment <nombre> -o wide     # Confirmar que estás en la versión correcta
+
 
 # Escalado
 kubectl scale deployment <nombre> --replicas=3       # Escala el deployment a 3 réplicas
@@ -153,13 +155,14 @@ kubectl set image deployment/<nombre> <contenedor>=<nueva-imagen>  # Actualiza l
 kubectl set image deployment nginx-deployment nginx=nginx:1.29-alpine  # Ejemplo: actualiza a nginx alpine
 
 # Gestión de rollouts
-kubectl rollout status deployment/<nombre>           # Muestra el estado del rollout actual
-kubectl rollout history deployment/<nombre>          # Historial de todos los rollouts
-kubectl rollout undo deployment/<nombre>             # Hace rollback al deployment anterior
-kubectl rollout undo deployment nginx-deployment     # Ejemplo: vuelve a la versión anterior de nginx
-kubectl rollout undo deployment/<nombre> --to-revision=2  # Rollback a una revisión específica
-kubectl rollout pause deployment/<nombre>            # Pausa el rollout en progreso
-kubectl rollout resume deployment/<nombre>           # Reanuda un rollout pausado
+kubectl rollout status deployment/<nombre>                  # Muestra el estado del rollout actual
+kubectl rollout history deployment/<nombre>                 # Historial de todos los rollouts
+kubectl rollout history deployment/<nombre> --revision=1    # 
+kubectl rollout undo deployment/<nombre>                    # Hace rollback al deployment anterior
+kubectl rollout undo deployment nginx-deployment            # Ejemplo: vuelve a la versión anterior de nginx
+kubectl rollout undo deployment/<nombre> --to-revision=2    # Rollback a una revisión específica
+kubectl rollout pause deployment/<nombre>                   # Pausa el rollout en progreso
+kubectl rollout resume deployment/<nombre>                  # Reanuda un rollout pausado
 
 # Edición y eliminación
 kubectl edit deployment <nombre>        # Abre el deployment en editor para modificación
