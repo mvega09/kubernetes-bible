@@ -94,6 +94,7 @@ kubectl run nginx --image=nginx         # Crea un pod simple con la imagen de ng
 # Información detallada
 kubectl describe pod <nombre>           # Muestra detalles completos del pod (eventos, estado, recursos)
 kubectl describe pod coredns-66bc5c9577-mlmsq -n kube-system  # Describe un pod en namespace específico
+kubectl describe pod -n mysql mysql-stateful-0|grep Image # Verificar que imagen de docker esta ejecutando el pod en este caso mysql-stateful-0 en el ns mysql
 
 # Logs
 kubectl logs <pod>                      # Muestra los logs del pod
