@@ -50,7 +50,16 @@ minikube start -p multi-cluster --nodes 3 --driver=docker       #Creaun cluster 
 kubectl label node multi-cluster-m02 kubernetes.io/role=worker  #Modificar el rol de none a worker en el nodo de minikube
 minikube start -p multi-cluster                                 #Iniciar cluster
 minikube stop -p multi-cluster                                  #Detener cluster
-minikube delete -p multi-cluster                                #Eliminar cluster
+minikube delete -p multi-cluster                               #Eliminar cluster
+
+#Iniciar un cluster con cni calico
+minikube start -p multi-cluster \
+--driver=docker \
+--nodes=3 \
+--cni=calico \
+--cpus=2 \
+--memory=2048 \
+--kubernetes-version=v1.31.0
 ```
 
 ---
@@ -421,6 +430,7 @@ Comandos para gestionar DaemonSets, que ejecutan un pod en cada nodo del cluster
 kubectl get daemonsets                  # Lista todos los DaemonSets
 kubectl get ds                          # Alias corto
 kubectl describe daemonset <nombre>     # Muestra detalles del DaemonSet
+kubectl describe ds                     # Alias corto
 kubectl delete daemonset <nombre>       # Elimina el DaemonSet
 kubectl rollout status daemonset/<nombre>        # Estado del rollout
 ```
