@@ -45,6 +45,7 @@ minikube addons enable metrics-server   # Habilita el servidor de métricas para
 minikube node add                       # Agregar nodo al cluster
 minikube node delete                    # Eliminar nodo al cluster
 minikube node stop <name_nodo>          # Detener un nodo especifico
+minikube start --network-plugin=cni --cni=calico --container-runtime=containerd #Iniciar un cluster local con cni de calico
 
 minikube start -p multi-cluster --nodes 3 --driver=docker       #Creaun cluster con 3 nodos en minikube
 kubectl label node multi-cluster-m02 kubernetes.io/role=worker  #Modificar el rol de none a worker en el nodo de minikube
@@ -72,6 +73,7 @@ Comandos para administrar y obtener información sobre tu cluster de Kubernetes.
 kubectl cluster-info                    # Muestra información del cluster (API server, DNS, etc.)
 kubectl version                         # Muestra la versión de kubectl y del cluster
 kubectl config view                     # Visualiza la configuración actual de kubectl
+kubectl config current-context          # Verificar el nombre del contexto que estás usando actualmente
 kubectl config get-contexts             # Lista todos los contextos disponibles
 kubectl config use-context <contexto>   # Cambia al contexto especificado
 kubectl get nodes                       # Lista todos los nodos del cluster
