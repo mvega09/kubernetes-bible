@@ -49,6 +49,10 @@ minikube start --network-plugin=cni --cni=calico --container-runtime=containerd 
 
 minikube start -p multi-cluster --nodes 3 --driver=docker       #Creaun cluster con 3 nodos en minikube
 kubectl label node multi-cluster-m02 kubernetes.io/role=worker  #Modificar el rol de none a worker en el nodo de minikube
+kubectl label nodes minikube-m02 node-type=superfast            #Modificar el tipo de nodo para afinidad/antiafinidad
+kubectl label nodes --overwrite minikube node-type=slow         #Modificar el tipo de nodo para afinidad/antiafinidad
+kubectl label nodes --overwrite minikube-m02 node-type=fast     #MModificar el tipo de nodo para afinidad/antiafinidad
+kubectl label nodes --overwrite minikube-m03 node-type=superfast  #Modificar el tipo de nodo para afinidad/antiafinidad         
 minikube start -p multi-cluster                                 #Iniciar cluster
 minikube stop -p multi-cluster                                  #Detener cluster
 minikube delete -p multi-cluster                               #Eliminar cluster
@@ -60,7 +64,8 @@ minikube start -p multi-cluster \
 --cni=calico \
 --cpus=2 \
 --memory=2048 \
---kubernetes-version=v1.31.0
+--kubernetes-version=v1.31.0 \
+--container-runtime=containerd
 ```
 
 ---
@@ -98,6 +103,7 @@ kubectl get pods -n kube-system         # Lista pods en el namespace kube-system
 kubectl get pods -o wide                # Muestra información extendida (IP, nodo, etc.)
 kubectl get pods --watch                # Observa cambios en los pods en tiempo real
 kubectl get pods -l app=nginx           # Filtra pods por label específico
+kubectl get pods --namespace default --output=custom-columns="NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.nodeName" #Ver los Pods y nombres de Nodos.
 
 # Creación de pods
 kubectl run nginx --image=nginx         # Crea un pod simple con la imagen de nginx
