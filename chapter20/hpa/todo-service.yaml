@@ -1,0 +1,13 @@
+# hpa/todo-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-app
+  namespace: hpa-demo
+spec:
+  type: ClusterIP
+  selector:
+    app: todo
+  ports:
+  - port: 8081         # Puerto expuesto dentro del clúster
+    targetPort: 3000   # containerPort en los pods
