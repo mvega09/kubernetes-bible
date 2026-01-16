@@ -41,6 +41,7 @@ Comandos para iniciar, gestionar y configurar tu cluster local de Kubernetes con
 minikube start                          # Inicia el cluster local de Kubernetes
 minikube dashboard                      # Abre el dashboard web de Kubernetes para visualización gráfica
 minikube addons list                    # Lista todos los addons disponibles en Minikube
+minikube addons list -p multi-cluster   # Lista todos los addons disponibles en el cluster llamado multi-cluster
 minikube addons enable metrics-server   # Habilita el servidor de métricas para monitoreo de recursos
 minikube node add                       # Agregar nodo al cluster
 minikube node delete                    # Eliminar nodo al cluster
@@ -64,7 +65,7 @@ minikube start -p multi-cluster \
 --cni=calico \
 --cpus=2 \
 --memory=2048 \
---kubernetes-version=v1.31.0 \
+--kubernetes-version=v1.33.0 \
 --container-runtime=containerd
 ```
 
