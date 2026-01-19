@@ -143,6 +143,10 @@ kubectl delete pod <nombre> --force --grace-period=0  # Fuerza la eliminación i
 kubectl cp <pod>:/path/file ./file      # Copia archivo desde el pod al local
 kubectl cp ./file <pod>:/path/file      # Copia archivo local hacia el pod
 
+#Ejemplo tomado del capitulo 21 de k8s bible
+kubectl cp troubles/test.txt blog-675df44d5-gkrt2:/app/test.txt -n trouble-ns # copiar un archivo desde tu máquina local a un contenedor:
+kubectl cp blog-675df44d5-gkrt2:/app/app.py /tmp/app.py -n trouble-ns #copiar un archivo desde un contenedor a tu máquina local
+
 # Recuperar manifesto
 kubectl get pods/nginx-pod -o yaml > nginx-pod.yaml  # Exporta el manifiesto YAML del pod
 ```
